@@ -1,0 +1,273 @@
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-box: #020617;
+    --border: #1e293b;
+    --text-main: #e5e7eb;
+    --text-muted: #94a3b8;
+    --purple: #a855f7;
+    --danger: #f87171;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, Arial, sans-serif;
+  }
+
+  body {
+    background: var(--bg-main);
+  }
+
+
+
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg-box);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 10px 25px rgba(0,0,0,.3);
+  }
+
+  .header__container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+
+
+  .header__logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  .logo-icon {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+  }
+
+
+
+  .header__nav {
+    display: flex;
+    gap: 32px;
+  }
+
+  .header__nav a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 15px;
+    position: relative;
+    padding: 6px 2px;
+    transition: color 0.25s ease;
+  }
+
+  .header__nav a:hover {
+    color: white;
+  }
+
+  .header__nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0%;
+    height: 2px;
+    background: var(--purple);
+    transition: width 0.25s ease;
+  }
+
+  .header__nav a:hover::after {
+    width: 100%;
+  }
+
+  .header__nav a.active {
+    color: var(--purple);
+  }
+
+  .header__nav a.active::after {
+    width: 100%;
+  }
+
+
+  .header__profile {
+    position: relative;
+  }
+
+  .profile-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 10px;
+    transition: background 0.25s ease, transform 0.2s ease;
+  }
+
+  .profile-btn:hover {
+    background: #020617;
+    transform: translateY(-1px);
+  }
+
+  .profile-btn img {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--purple);
+  }
+
+  .arrow {
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+
+
+
+  .dropdown {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: linear-gradient(180deg, #020617, #020617f2);
+    border: 1px solid #1e293b;
+    border-radius: 14px;
+    width: 190px;
+    padding: 8px;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 20px 40px rgba(0,0,0,.6);
+    animation: dropdownFade 0.2s ease;
+  }
+
+  @keyframes dropdownFade {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .dropdown.active {
+    display: block;
+  }
+
+  .dropdown a {
+    width: 100%;
+    display: block;
+    color: white;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-decoration: none;
+  }
+
+  .dropdown a:hover {
+    background: #1e293b;
+  }
+
+  .divider {
+    height: 1px;
+    background: #1e293b;
+    margin: 6px 0;
+  }
+
+  .logout {
+  width: 100%;
+  background: none;
+  color: var(--danger);
+  border: none;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.logout:hover {
+  background: rgba(248, 113, 113, 0.15);
+}
+
+</style>
+
+<header class="header">
+  <div class="header__container">
+
+  
+    <div class="header__logo">
+      <div class="logo-icon">🎵</div>
+      <span>SoundForum</span>
+    </div>
+
+    
+    <nav class="header__nav">
+      <a href="{% url 'home' %}" class="active">Home</a>
+      <a href="{% url 'generos' %}">Generos</a>
+      <a href="{% url 'post' %}">Post</a>
+      <a href="{% url 'newPost' %}">Nuevo Post</a>
+      <a href="{% url 'nosotros' %}">Sobre Nosotros</a>
+    </nav>
+
+    
+    <div class="header__profile">
+      <button class="profile-btn">
+        <img src="{{ usuario.avatar_url|default:'https://www.phoenixestimations.com/files/user_icon.png' }}" alt="avatar">
+        <span class="arrow">▾</span>
+      </button>
+
+      <div class="dropdown">
+        <a href="{% url 'perfil' %}">Ir al Perfil</a>
+        <div class="divider"></div>
+        <button class="logout" onclick="confirmarLogout()">Cerrar Sesion</button>
+
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const profileBtn = document.querySelector(".profile-btn");
+    const dropdown = document.querySelector(".dropdown");
+
+    profileBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      dropdown.classList.toggle("active");
+    });
+
+    document.addEventListener("click", function () {
+      dropdown.classList.remove("active");
+    });
+  </script>
+
+  <script>
+  function confirmarLogout() {
+    const salir = confirm("¿Seguro que deseas cerrar sesión?");
+
+    if (salir) {
+    
+      window.location.href = "{% url 'cerrarSesion' %}";
+    }
+  }
+</script>
+
+
+
+</header>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>SoundForo - Inicio</title>
+
+<style>
+:root {
+  --bg-main: #000;
+  --bg-box: #020617;
+  --border: #1e293b;
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+  --purple: #a855f7;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, Arial, sans-serif;
+}
+
+body {
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+
+
+.home-grid {
+  max-width: 1300px;
+  margin: auto;
+  padding: 40px 20px;
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+  gap: 30px;
+}
+
+
+.hero {
+  background: linear-gradient(135deg, #111, #020617);
+  padding: 40px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.hero h1 {
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-main {
+  background: #14b8a6;
+  border: none;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-outline {
+  background: #fff;
+  border: none;
+  color: #000;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+
+
+.right-box {
+  background: var(--bg-box);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.right-box input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #111;
+  color: white;
+}
+
+.trend-item {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.stat-box {
+  background: var(--bg-box);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  font-size: 14px;
+}
+
+
+
+.section-title {
+  margin: 40px 0 20px;
+  font-size: 20px;
+}
+
+.discussion-card {
+  background: var(--bg-box);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  gap: 14px;
+  margin-bottom: 15px;
+}
+
+.discussion-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #333;
+}
+
+.discussion-content h3 {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.discussion-content span {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+
+
+.genres-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.genre-card {
+  background: var(--bg-box);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  text-align: center;
+}
+
+
+
+.user-box {
+  background: var(--bg-box);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.user-item {
+  margin-top: 10px;
+  font-size: 14px;
+}
+</style>
+</head>
+
+{% load static %}
+
+<body>
+  {% include "miapp/header.html" %}
+
+
+
+
+<div class="home-grid">
+
+
+<div>
+
+  <div class="hero">
+    <h1>DONDE LA MUSICA NOS UNE</h1>
+    <p>Unete y encuentra a mas personas que comparten tus mismos gustos en musica.</p>
+    <div class="hero-buttons">
+      <button class="btn-main" onclick="window.location.href=`{% url 'newPost' %}`">
+    Comienza una Discusión
+</button>
+
+<button class="btn-outline" onclick="window.location.href=`{% url 'generos' %}`">
+    Explorar Generos
+</button>
+
+</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-box">👥 Miembros Activos <b>0</b></div>
+    <div class="stat-box">💬 Discusiones <b>0</b></div>
+    <div class="stat-box">📈 Posts Diarios <b>0</b></div>
+  </div>
+
+  <h2 class="section-title">Top Discusiones</h2>
+
+  <div class="discussion-card">
+    <div class="discussion-avatar"></div>
+    <div class="discussion-content">
+      <h3>La importancia de Radiohead en la musica</h3>
+      <span>Discusión · 0 comentarios</span>
+    </div>
+  </div>
+
+  <div class="discussion-card">
+    <div class="discussion-avatar"></div>
+    <div class="discussion-content">
+      <h3>Mejor album de Aphex Twin</h3>
+      <span>Pregunta · 0 comentarios</span>
+    </div>
+  </div>
+
+  <div class="discussion-card">
+    <div class="discussion-avatar"></div>
+    <div class="discussion-content">
+      <h3>¿Cual es el mejor Tiny Desk?</h3>
+      <span>Pregunta · 0 comentarios</span>
+    </div>
+  </div>
+
+  <h2 class="section-title">Generos Mas Populares</h2>
+
+  <div class="genres-grid">
+    <div class="genre-card">Rock</div>
+    <div class="genre-card">Indie</div>
+    <div class="genre-card">Alternativo</div>
+    <div class="genre-card">Electrónica</div>
+    <div class="genre-card">Art Rock</div>
+    <div class="genre-card">Jazz</div>
+  </div>
+
+</div>
+
+ {% include "miapp/sidebar.html" %}
+
+
+
+</body>
+</html>

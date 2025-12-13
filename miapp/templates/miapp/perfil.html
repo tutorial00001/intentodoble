@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile - SoundForum</title>
+
+<style>
+    :root {
+        --bg-main: #0f172a;
+        --bg-box: #020617;
+        --border: #1e293b;
+        --text-main: #e5e7eb;
+        --text-muted: #94a3b8;
+        --purple: #a855f7;
+        --blue: #3b82f6;
+        --green: #22c55e;
+        --danger: #f87171;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: system-ui, Arial, sans-serif;
+    }
+
+    body {
+        background: var(--bg-main);
+        color: var(--text-main);
+        line-height: 1.5;
+    }
+
+    img {
+        max-width: 100%;
+        display: block;
+    }
+
+    h1, h2, h3 {
+        font-weight: 600;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .profile-header {
+        background: linear-gradient(135deg, #0f172a, #2a0a4a, #0f172a);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .profile-header-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        align-items: center;
+        padding: 50px 20px;
+    }
+
+    .avatar-box {
+        position: relative;
+    }
+
+    .avatar-box img {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid var(--purple);
+        box-shadow: 0 15px 40px rgba(0,0,0,.6);
+    }
+
+    .edit-avatar {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        background: var(--purple);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        padding: 6px 8px;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 12px;
+    }
+
+    .profile-info {
+        flex: 1;
+    }
+
+    .profile-top {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .editPerfil {
+        background: var(--border);
+        border: none;
+        color: var(--text-main);
+        padding: 8px 14px;
+        border-radius: 8px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .profile-bio {
+        color: var(--text-muted);
+        margin-bottom: 15px;
+        max-width: 650px;
+        line-height: 1.6;
+    }
+
+    .profile-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        color: var(--text-muted);
+        font-size: 14px;
+    }
+
+
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+        gap: 15px;
+        margin-top: -30px;
+        margin-bottom: 40px;
+    }
+
+    .stat-card {
+        background: var(--bg-box);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 25px;
+        text-align: center;
+    }
+
+    .stat-card h3 {
+        font-size: 28px;
+        margin-bottom: 6px;
+    }
+
+    .stat-card p {
+        color: var(--text-muted);
+    }
+
+    .purple { color: var(--purple); }
+    .blue { color: var(--blue); }
+    .green { color: var(--green); }
+
+
+
+    .posts-title {
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+
+    .post {
+        background: var(--bg-box);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 20px;
+        margin-bottom: 20px;
+        transition: border-color 0.2s;
+    }
+
+    .post:hover {
+        border-color: #334155;
+    }
+
+    .post-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .post-header-left {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        flex: 1;
+    }
+
+    .rank {
+        background: var(--purple);
+        color: white;
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 14px;
+        flex-shrink: 0;
+    }
+
+    .post-title {
+        font-size: 18px;
+        margin-bottom: 6px;
+        color: var(--text-main);
+    }
+
+    .post-meta {
+        color: var(--text-muted);
+        font-size: 13px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .post-type {
+        background: var(--border);
+        color: var(--blue);
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+    }
+
+    .post-actions {
+        display: flex;
+        gap: 10px;
+        flex-shrink: 0;
+    }
+
+    .btn-edit, .btn-delete {
+        padding: 8px 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.2s;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .btn-edit {
+        background: var(--green);
+        color: white;
+    }
+
+    .btn-delete {
+        background: var(--danger);
+        color: white;
+    }
+
+    .btn-edit:hover {
+        background: #1db954;
+        transform: translateY(-2px);
+    }
+
+    .btn-delete:hover {
+        background: #e53935;
+        transform: translateY(-2px);
+    }
+
+    .excerpt {
+        color: var(--text-muted);
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
+
+    .post-image {
+        max-width: 100%;
+        height: auto;
+        margin: 15px 0;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+    }
+
+    .post-stats-container {
+        display: flex;
+        gap: 25px;
+        color: var(--text-muted);
+        font-size: 14px;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid var(--border);
+    }
+
+    .no-posts {
+        color: var(--text-muted);
+        text-align: center;
+        padding: 40px 20px;
+        font-size: 16px;
+    }
+
+    .btn-main {
+        display: inline-block;
+        background: var(--purple);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.2s;
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .btn-main:hover {
+        background: #9333ea;
+        transform: translateY(-2px);
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    @media (max-width: 768px) {
+        .profile-header-content {
+            flex-direction: column;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .profile-meta {
+            justify-content: center;
+        }
+
+        .post-header {
+            flex-direction: column;
+        }
+
+        .post-actions {
+            width: 100%;
+            justify-content: flex-end;
+        }
+
+        .post-meta {
+            font-size: 12px;
+        }
+    }
+
+</style>
+</head>
+
+{% load static %}
+
+<body>
+{% include "miapp/header.html" %}
+
+<section class="profile-header">
+    <div class="container profile-header-content">
+        
+
+        <div class="avatar-box">
+            <img src="{{ usuario.avatar_url|default:'https://www.phoenixestimations.com/files/user_icon.png' }}">
+            <a href="{% url 'editPerfil' %}" class="edit-avatar">✎</a>
+        </div>
+
+        
+        <div class="profile-info">
+            <div class="profile-top">
+                <h1>{{ usuario.username }}</h1>
+                <a href="{% url 'editPerfil' %}" class="editPerfil">Edit Profile</a>
+            </div>
+
+            <p class="profile-bio">
+                {{ usuario.bio|default:"No bio added yet." }}
+            </p>
+
+            <div class="profile-meta">
+                <span>📧 {{ usuario.email|default:"No email" }}</span>
+                <span>📅 Joined {{ usuario.date_joined|date:"F Y" }}</span>
+                <span>📍 {{ usuario.location|default:"Unknown location" }}</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="container stats">
+    <div class="stat-card">
+        <h3 class="purple">{{ mis_posts|length }}</h3>
+        <p>Posts Created</p>
+    </div>
+    <div class="stat-card">
+        <h3 class="blue">0</h3>
+        <p>Total Comments</p>
+    </div>
+    <div class="stat-card">
+        <h3 class="green">0</h3>
+        <p>Total Likes</p>
+    </div>
+</section>
+
+
+<section class="container">
+    <h2 class="posts-title">Mi Posts</h2>
+
+    {% if mis_posts %}
+        {% for post in mis_posts %}
+        <div class="post">
+            <div class="post-header">
+                <div class="post-header-left">
+                    <div class="rank">#{{ forloop.counter }}</div>
+                    <div>
+                        <h3 class="post-title">{{ post.title }}</h3>
+                        <div class="post-meta">
+                            <span>{{ post.author.username }}</span>
+                            <span>•</span>
+                            <span>{{ post.created_at|timesince }} ago</span>
+                            <span>•</span>
+                            <span>{{ post.genre }}</span>
+                            <span>•</span>
+                            <span class="post-type">{{ post.get_post_type_display }}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="post-actions">
+                    <a href="{% url 'editPost' post.id %}" class="btn-edit">
+                        Edit
+                    </a>
+                    <a href="{% url 'elimPost' post.id %}" class="btn-delete">
+                        Delete
+                    </a>
+                </div>
+            </div>
+            
+            <p class="excerpt">
+                {{ post.content|truncatewords:30 }}
+            </p>
+            
+            {% if post.image_url %}
+                <img src="{{ post.image_url }}" alt="Imagen del post" class="post-image">
+            {% endif %}
+            
+            <div class="post-stats-container">
+                <span>👍 0</span>
+                <span>💬 0</span>
+                <span>👁 0</span>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="text-center">
+            <p class="no-posts">No hay Post Para Mostrar :C </p>
+            <a href="{% url 'newPost' %}" class="btn-main">Create your first post</a>
+        </div>
+    {% endif %}
+</section>
+
+</body>
+</html>

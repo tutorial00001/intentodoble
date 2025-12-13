@@ -1,0 +1,123 @@
+<style>
+  aside {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .card {
+    background: #020617;
+    border: 1px solid #1e293b;
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.4);
+  }
+
+  .search-box {
+    position: relative;
+  }
+
+  .search-box input {
+    width: 100%;
+    padding: 12px 14px 12px 42px;
+    border-radius: 10px;
+    border: 1px solid #1e293b;
+    background: #020617;
+    color: #e5e7eb;
+    outline: none;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+  }
+
+  .card-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    font-weight: bold;
+  }
+
+  .trend-item,
+  .user {
+    display: block;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #e5e7eb;
+  }
+
+  .trend-item:hover,
+  .user:hover {
+    background: #020617;
+  }
+
+  .trend-item span {
+    float: right;
+    color: #a855f7;
+  }
+
+  .user {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .user img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid #1e293b;
+  }
+
+  .user span {
+    display: block;
+    font-size: 13px;
+    color: #94a3b8;
+  }
+</style>
+
+<aside>
+
+  <div class="card">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" placeholder="Buscar discusiones...">
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📈 Temas en Tendencia</div>
+    <a href="#" class="trend-item">Mejores albumes de 2025 <span>245</span></a>
+    <a href="#" class="trend-item">Consejos para aprender guitarra <span>189</span></a>
+    <a href="#" class="trend-item">Debate Vinilo vs Digital <span>167</span></a>
+    <a href="#" class="trend-item">Experiencias en conciertos <span>143</span></a>
+    <a href="#" class="trend-item">Herramientas de produccion musical <span>128</span></a>
+  </div>
+
+  <div class="card">
+    <div class="card-title">👤 Mejores Contribuidores</div>
+
+    <a href="#" class="user">
+      <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100">
+      <div>MusicGuru <span>1247 publicaciones</span></div>
+    </a>
+
+    <a href="#" class="user">
+      <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100">
+      <div>SoundWave <span>982 publicaciones</span></div>
+    </a>
+
+    <a href="#" class="user">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100">
+      <div>RhythmKing <span>856 publicaciones</span></div>
+    </a>
+  </div>
+
+</aside>

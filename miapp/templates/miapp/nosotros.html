@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Sobre Nosotros - SoundForum</title>
+
+<style>
+    :root {
+        --bg-main: #0f172a;
+        --bg-box: #020617;
+        --border: #1e293b;
+        --text-main: #e5e7eb;
+        --text-muted: #94a3b8;
+        --purple: #a855f7;
+        --blue: #3b82f6;
+        --green: #22c55e;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: system-ui, Arial, sans-serif;
+    }
+
+    body {
+        background: var(--bg-main);
+        color: var(--text-main);
+        min-height: 100vh;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: auto;
+        padding: 60px 20px;
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+        margin-bottom: 12px;
+    }
+
+    .hero p {
+        color: var(--text-muted);
+        max-width: 700px;
+        margin: auto;
+        line-height: 1.6;
+    }
+
+    /* ================= GRID INFO ================= */
+
+    .about-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 25px;
+        margin-bottom: 60px;
+    }
+
+    .about-card {
+        background: var(--bg-box);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 25px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.4);
+    }
+
+    .about-card h3 {
+        margin-bottom: 12px;
+        color: var(--blue);
+    }
+
+    .about-card p {
+        color: var(--text-muted);
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    /* ================= MISSION ================= */
+
+    .mission {
+        background: linear-gradient(135deg, #020617, #0f172a);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 40px 30px;
+        margin-bottom: 60px;
+        text-align: center;
+    }
+
+    .mission h2 {
+        margin-bottom: 15px;
+    }
+
+    .mission p {
+        color: var(--text-muted);
+        max-width: 800px;
+        margin: auto;
+        line-height: 1.6;
+    }
+
+    /* ================= TEAM ================= */
+
+    .team-title {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .team {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 25px;
+    }
+
+    .member {
+        background: var(--bg-box);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 25px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,.4);
+    }
+
+    .member img {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid var(--purple);
+        margin-bottom: 15px;
+    }
+
+    .member h4 {
+        margin-bottom: 5px;
+    }
+
+    .member span {
+        font-size: 14px;
+        color: var(--text-muted);
+    }
+
+    .member p {
+        margin-top: 10px;
+        font-size: 14px;
+        color: var(--text-muted);
+        line-height: 1.5;
+    }
+
+    /* ================= FOOTER ================= */
+
+    .footer {
+        text-align: center;
+        border-top: 1px solid var(--border);
+        padding-top: 30px;
+        margin-top: 80px;
+        color: var(--text-muted);
+        font-size: 14px;
+    }
+</style>
+</head>
+
+{% load static %}
+
+<body>
+  {% include "miapp/header.html" %}
+    <div id="header-container"></div>
+
+    <div class="container">
+
+    
+    <section class="hero">
+        <h1>Sobre SoundForum</h1>
+        <p>
+        SoundForum es una comunidad digital creada para los amantes de la música que desean compartir opiniones, descubrir nuevos sonidos y conectarse a través de conversaciones significativas sobre musica.
+        </p>
+    </section>
+
+    
+    <section class="about-grid">
+        <div class="about-card">
+        <h3>🎵 Quienes Somos</h3>
+        <p>
+            Somos una comunidad apasionada de oyentes, musicos, productores y fans que creemos que la música conecta al mundo más allá de los idiomas y las fronteras.
+        </p>
+        </div>
+
+        <div class="about-card">
+        <h3>💬 Qué Hacemos</h3>
+        <p>
+            Ofrecemos un espacio donde los usuarios pueden crear debates, hacer preguntas, publicar reseñas y compartir noticias importantes relacionadas con la cultura musical.
+        </p>
+        </div>
+
+        <div class="about-card">
+        <h3>🚀 Por Qué Existimos</h3>
+        <p>
+            Para promover el debate respetuoso, el intercambio de conocimiento y el descubrimiento de nuevos artistas y géneros en una plataforma segura y amigable.
+        </p>
+        </div>
+    </section>
+
+
+    <section class="mission">
+        <h2>Nuestra Mision</h2>
+        <p>
+        Nuestra mision es convertirnos en la plataforma de discusión musical más inspiradora y creativa, donde cada voz importe y cada género tenga su lugar.
+        </p>
+    </section>
+
+    
+    <section>
+        <div class="team-title">
+        <h2>Nuestro Equipo</h2>
+        <p style="color: var(--text-muted);">Las personas detras de SoundForum</p>
+        </div>
+
+        <div class="team">
+        <div class="member">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaf9DptYHfjh1VEONEpm59tZWjeJZ6ZLgCPQ&s  ">
+            <h4>Diego Castillo</h4>
+            <span>Fundador y Desarrollador</span>
+            <p>Apasionado por el desarrollo web y las comunidades musicales.</p>
+        </div>
+
+        <div class="member">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiV0nBipJN6S0hAl9qOiyoeATKTMQyB2wxsA&s">
+            <h4>Mauricio Villamizar</h4>
+            <span>Diseñadora UI / UX</span>
+            <p>Diseñando interfaces amigables para experiencias musicales digitales.</p>
+        </div>
+
+        <div class="member">
+            <img src="https://previews.123rf.com/images/romastudio/romastudio1507/romastudio150700050/43284020-businessman-with-racing-helmet-give-the-thumbs-up-photos-of-young-businessman-wearing-a-suit-and.jpg">
+            <h4>Yeison Rozo</h4>
+            <span>Gestor de Comunidad</span>
+            <p>Conectando personas y moderando debates significativos.</p>
+        </div>
+        </div>
+    </section>
+
+    
+    <footer class="footer">
+        <p>© 2025 SoundForum — Todos los derechos reservados.</p>
+    </footer>
+
+    
+
+    </div>
+
+</body>
+</html>

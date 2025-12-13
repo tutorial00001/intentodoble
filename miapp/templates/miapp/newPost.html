@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva Discusión - SoundForum</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background: #020617;
+        color: #e5e7eb;
+    }
+
+    .hero {
+        background: linear-gradient(to bottom right, #020617, #1e3a8a33, #020617);
+        border-bottom: 1px solid #1e293b;
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+    .hero h1 {
+        color: #93c5fd;
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
+
+    .hero p {
+        max-width: 600px;
+        margin: auto;
+        color: #cbd5f5;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: auto;
+        padding: 40px 20px;
+    }
+
+    .card {
+        background: #020617;
+        border: 1px solid #1e293b;
+        border-radius: 14px;
+        padding: 20px;
+        margin-bottom: 25px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: white;
+    }
+
+    input, select, textarea {
+        width: 100%;
+        background: #1e293b;
+        border: 1px solid #334155;
+        color: white;
+        padding: 12px;
+        border-radius: 8px;
+        outline: none;
+    }
+
+    textarea {
+        resize: none;
+    }
+
+    .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .post-type {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 15px;
+    }
+
+    .post-type label {
+        border: 2px solid #334155;
+        border-radius: 10px;
+        padding: 15px;
+        cursor: pointer;
+        transition: 0.3s;
+        background: #020617;
+    }
+
+    .post-type input {
+        display: none;
+    }
+
+    .post-type input:checked + div {
+        border: 2px solid #3b82f6;
+        background: #3b82f622;
+    }
+
+    .hint {
+        margin-top: 6px;
+        font-size: 13px;
+        color: #94a3b8;
+    }
+
+    .guide {
+        background: #1e3a8a33;
+        border: 1px solid #3b82f666;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+    }
+
+    .actions {
+        display: flex;
+        gap: 15px;
+    }
+
+    .btn-main {
+        flex: 1;
+        background: linear-gradient(to right, #2563eb, #7c3aed);
+        border: none;
+        color: white;
+        padding: 15px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .btn-cancel {
+        padding: 15px 25px;
+        border-radius: 12px;
+        background: #1e293b;
+        color: #cbd5f5;
+        border: 1px solid #334155;
+        cursor: pointer;
+    }
+
+    /* MODAL */
+    .modal {
+        position: fixed;
+        inset: 0;
+        background: #000000aa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        display: none;
+    }
+
+    .modal-box {
+        background: #020617;
+        border: 1px solid #1e293b;
+        padding: 30px;
+        border-radius: 16px;
+        text-align: center;
+        max-width: 350px;
+        width: 100%;
+    }
+
+    .success-circle {
+        width: 70px;
+        height: 70px;
+        background: #22c55e22;
+        border-radius: 50%;
+        margin: auto;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        color: #22c55e;
+    }
+
+    @media (max-width: 700px) {
+        .row {
+        grid-template-columns: 1fr;
+        }
+    }
+</style>
+</head>
+
+{% load static %}
+
+<body>
+  {% include "miapp/header.html" %}
+
+
+<div class="hero">
+    <h1>Crear Nueva Discusion</h1>
+    <p>Comparte tus ideas, preguntas o noticias con la comunidad musical</p>
+</div>
+
+
+<div class="container">
+    <form id="discussionForm" method="POST" action="{% url 'newPost' %}">
+    {% csrf_token %}
+
+    <!-- POST TYPE -->
+    <div class="card">
+        <label>Tipo de Publicacion *</label>
+        <div class="post-type">
+            <label>
+                <input type="radio" name="postType" value="discussion" checked>
+                <div>
+                    <strong>Discussion</strong><br>
+                    Conversación general
+                </div>
+            </label>
+
+            <label>
+                <input type="radio" name="postType" value="question">
+                <div>
+                    <strong>Question</strong><br>
+                    Pregunta a la comunidad
+                </div>
+            </label>
+
+            <label>
+                <input type="radio" name="postType" value="review">
+                <div>
+                    <strong>Review</strong><br>
+                    Reseña musical
+                </div>
+            </label>
+
+            <label>
+                <input type="radio" name="postType" value="news">
+                <div>
+                    <strong>News</strong><br>
+                    Noticias musicales
+                </div>
+            </label>
+        </div>
+    </div>
+
+   
+    <div class="card">
+        <label>Titulo *</label>
+        <input type="text" name="title" required placeholder="¿De qué trata tu discusión?">
+        <div class="hint">Hazlo claro y llamativo</div>
+    </div>
+
+    
+    <div class="row">
+        <div class="card">
+            <label>Genero *</label>
+            <select name="genre" required>
+                <option value="">Selecciona un género</option>
+                <option>Rock</option>
+                <option>Pop</option>
+                <option>Jazz</option>
+                <option>Hip-Hop</option>
+                <option>Electronic</option>
+                <option>Classical</option>
+                <option>Indie</option>
+                <option>Metal</option>
+                <option>Blues</option>
+                <option>Other</option>
+            </select>
+        </div>
+
+        <div class="card">
+            <label>Tags</label>
+            <input type="text" name="tags" placeholder="guitar, solo, rock">
+            <div class="hint">Separados por comas</div>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <label>Contenido *</label>
+        <textarea name="content" rows="10" required placeholder="Escribe tu mensaje aquí..."></textarea>
+    </div>
+
+
+    <div class="card">
+        <label>Imagen (opcional)</label>
+        <input type="url" name="image" placeholder="https://imagen.com/foto.jpg">
+    </div>
+
+
+    <div class="actions">
+        <button type="submit" class="btn-main">Publicar Discusion</button>
+        <button type="button" class="btn-cancel">Cancelar</button>
+    </div>
+
+</form>
+    </div>
+
+
+    
+<div class="modal" id="successModal">
+    <div class="modal-box">
+        <div class="success-circle">✔</div>
+        <h3>¡Discusion Publicada!</h3>
+        <p>Tu post fue publicado correctamente.</p>
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById("discussionForm");
+    const modal = document.getElementById("successModal");
+
+    
+</script>
+
+
+
+</body>
+</html>

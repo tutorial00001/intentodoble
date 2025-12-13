@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Profile - SoundForum</title>
+
+  <style>
+    :root {
+      --bg-main: #0f172a;
+      --bg-box: #020617;
+      --border: #1e293b;
+      --text-main: #e5e7eb;
+      --text-muted: #94a3b8;
+      --purple: #a855f7;
+      --blue: #3b82f6;
+      --danger: #f87171;
+      --green: #22c55e;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, Arial, sans-serif;
+    }
+
+    body {
+      background: var(--bg-main);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      margin-bottom: 25px;
+    }
+
+
+    .edit-card {
+      background: var(--bg-box);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 30px;
+    }
+
+
+
+    .avatar-section {
+      text-align: center;
+    }
+
+    .avatar-section img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--purple);
+      box-shadow: 0 15px 40px rgba(0,0,0,.5);
+      margin-bottom: 15px;
+    }
+
+    .avatar-section input {
+      display: none;
+    }
+
+    .change-avatar {
+      display: inline-block;
+      background: var(--purple);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: #020617;
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 12px;
+      border-radius: 10px;
+      outline: none;
+      transition: .2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--purple);
+    }
+
+    textarea {
+      resize: none;
+      min-height: 90px;
+    }
+
+    
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .btn-save {
+      flex: 1;
+      background: var(--blue);
+      border: none;
+      color: white;
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn-cancel {
+  flex: 1;
+  background: #020617;
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;   
+  display: flex;           
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.btn-cancel:hover {
+  background: #0f172a;
+}
+
+
+    @media (max-width: 768px) {
+      .edit-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+  </style>
+</head>
+
+
+
+<body>
+
+  <div class="container">
+    <h1>Editar Perfil</h1>
+
+    <div class="edit-card">
+
+      <div class="avatar-section">
+        <img src="{{ usuario.avatar_url|default:'https://www.phoenixestimations.com/files/user_icon.png' }}">
+      </div>
+
+      
+      <form method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label>Email</label>
+          {{ form.email }}
+        </div>
+
+        <div class="form-group">
+          <label>Location</label>
+          {{ form.location }}
+        </div>
+
+        <div class="form-group">
+          <label>Bio</label>
+          {{ form.bio }}
+        </div>
+
+        <div class="form-group">
+          <label>Website</label>
+          {{ form.website }}
+        </div>
+
+        <div class="form-group">
+          <label>Avatar URL</label>
+          {{ form.avatar_url }}
+        </div>
+
+
+        {% if form.errors %}
+    <div style="color: red; padding: 10px;">
+        {{ form.errors }}
+    </div>
+{% endif %}
+
+        <div class="buttons">
+  <button type="submit" class="btn-save">Guardar Cambios</button>
+
+  <a href="{% url 'perfil' %}" class="btn-cancel">Cancelar</a>
+</div>
+
+      </form>
+
+    </div>
+  </div>
+
+</body>
+
+
+

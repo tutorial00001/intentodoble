@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Explorar por Género</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, Arial, sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: #e5e7eb;
+    }
+
+    /* Hero */
+    .hero {
+      background: radial-gradient(circle at top, #581c87, #020617);
+      text-align: center;
+      padding: 80px 20px;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: auto;
+      color: #cbd5f5;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+    }
+
+    /* Cards */
+    .genres-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    .genre-card {
+      background: #020617;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #1e293b;
+      transition: 0.3s;
+    }
+
+    .genre-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .genre-image {
+      height: 130px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 10px;
+      position: relative;
+    }
+
+    .genre-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, #020617, transparent);
+    }
+
+    .icon {
+      position: relative;
+      font-size: 24px;
+      z-index: 2;
+      background: rgba(0,0,0,0.5);
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+  
+    .rock { background: linear-gradient(135deg, #ef4444, #f97316); }
+    .jazz { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
+    .electronic { background: linear-gradient(135deg, #a855f7, #ec4899); }
+    .hiphop { background: linear-gradient(135deg, #facc15, #ef4444); }
+    .pop { background: linear-gradient(135deg, #ec4899, #a855f7); }
+    .classical { background: linear-gradient(135deg, #4f46e5, #3b82f6); }
+    .indie { background: linear-gradient(135deg, #22c55e, #14b8a6); }
+    .rb { background: linear-gradient(135deg, #f97316, #ef4444); }
+
+    
+    .genre-content {
+      padding: 20px;
+    }
+
+    .genre-content h3 {
+      margin-bottom: 8px;
+    }
+
+    .genre-content p {
+      color: #94a3b8;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .genre-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .genre-footer button {
+      background: none;
+      border: none;
+      color: #a855f7;
+      cursor: pointer;
+    }
+
+    
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .sidebar-box {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .sidebar-box h3 {
+      margin-bottom: 15px;
+    }
+
+    .trend {
+      background: #020617;
+      border: 1px solid #1e293b;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
+    .genre-name {
+      color: #a855f7;
+      font-weight: bold;
+    }
+
+    .stats div {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      color: #cbd5f5;
+    }
+
+    .main-btn {
+      background: #7c3aed;
+      border: none;
+      padding: 14px;
+      border-radius: 14px;
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+    }
+  </style>
+</head>
+
+{% load static %}
+
+<body>
+  {% include "miapp/header.html" %}
+
+ 
+  <section class="hero">
+    <h1>Explorar por Genero</h1>
+    <p>Descubre discusiones organizadas por tus generos musicales favoritos. Unete a conversaciones con fans que comparten tu mismo gusto musical.</p>
+  </section>
+
+  <main class="container">
+
+   
+    <section class="genres-grid">
+
+      <article class="genre-card">
+        <div class="genre-image rock">
+          <span class="icon">🎸</span>
+        </div>
+        <div class="genre-content">
+          <h3>Rock</h3>
+          <p>Desde el rock clasico hasta el alternativo moderno</p>
+          <div class="genre-footer">
+            <span>3,421 discusiones</span>
+            <button>Explorar →</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="genre-card">
+        <div class="genre-image jazz">
+          <span class="icon">🎹</span>
+        </div>
+        <div class="genre-content">
+          <h3>Jazz</h3>
+          <p>Jazz suave, bebop y todo lo demas</p>
+          <div class="genre-footer">
+            <span>2,156 discusiones</span>
+            <button>Explorar →</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="genre-card">
+        <div class="genre-image electronic">
+          <span class="icon">📻</span>
+        </div>
+        <div class="genre-content">
+          <h3>Electronica</h3>
+          <p>EDM, techno, house y ritmos electronicos</p>
+          <div class="genre-footer">
+            <span>2,893 discusiones</span>
+            <button>Explorar →</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="genre-card">
+        <div class="genre-image hiphop">
+          <span class="icon">🎤</span>
+        </div>
+        <div class="genre-content">
+          <h3>Hip-Hop</h3>
+          <p>Rap, trap y cultura hip-hop</p>
+          <div class="genre-footer">
+            <span>3,124 discusiones</span>
+            <button>Explorar →</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="genre-card">
+        <div class="genre-image pop">
+          <span class="icon">✨</span>
+        </div>
+        <div class="genre-content">
+          <h3>Pop</h3>
+          <p>Éxitos del momento y musica pop</p>
+          <div class="genre-footer">
+            <span>4,210 discusiones</span>
+            <button>Explorar →</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="genre-card">
+        <div class="genre-image classical">
+          <span class="icon">🎼</span>
+        </div>
+        <div class="genre-content">
+          <h3>Clásica</h3>
+          <p>Orquestas, sinfonías y composiciones clasicas</p>
+          <div class="genre-footer">
+            <span>1,567 discusiones</span>
+            <button>Explorar →</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="genre-card">
+        <div class="genre-image indie">
+          <span class="icon">🎧</span>
+        </div>
+        <div class="genre-content">
+          <h3>Indie</h3>
+          <p>Artistas independientes y sonidos alternativos</p>
+          <div class="genre-footer">
+            <span>2,789 discusiones</span>
+            <button>Explorar →</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="genre-card">
+        <div class="genre-image rb">
+          <span class="icon">💿</span>
+        </div>
+        <div class="genre-content">
+          <h3>R&B / Soul</h3>
+          <p>Ritmo, blues y musica con alma</p>
+          <div class="genre-footer">
+            <span>1,893 discusiones</span>
+            <button>Explorar →</button>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    
+    <aside class="sidebar">
+      {% include "miapp/sidebar.html" %}
+    </aside>
+
+  </main>
+
+</body>
