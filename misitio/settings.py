@@ -17,7 +17,7 @@ DEBUG = True
 ALLOWED_HOSTS = [DOMINIO, 'localhost', '127.0.0.1']
 
 # CSRF Trusted Origins
-CSRF_TRUSTED_ORIGINS = [DOMINIO] if not DEBUG else ['http://localhost:8000', 'http://127.0.0.1:8000']
+CSRF_TRUSTED_ORIGINS = [DOMINIO] if not DEBUG else ['http://localhost:8000', 'http://127.0.0.1:8000',os.getenv('DOMINIO'),]
 
 # Application definition
 INSTALLED_APPS = [
