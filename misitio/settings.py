@@ -8,17 +8,21 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Secret Key y Dominio desde el archivo .env
+DEBUG = True  
 SECRET_KEY = os.getenv('SECRET_KEY')
 DOMINIO = os.getenv('DOMINIO')
 
-DEBUG = True  
-
 # Allow all hosts for development, but restrict in production
-ALLOWED_HOSTS = [DOMINIO, 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ["*"]
 
 # CSRF Trusted Origins
-CSRF_TRUSTED_ORIGINS = [DOMINIO] if not DEBUG else ['http://localhost:8000', 'http://127.0.0.1:8000',os.getenv('DOMINIO'),]
+CSRF_TRUSTED_ORIGINS = [DOMINIO]
 
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
