@@ -16,7 +16,7 @@ DOMINIO = os.getenv('DOMINIO')
 ALLOWED_HOSTS = ["*"]
 
 # CSRF Trusted Origins
-CSRF_TRUSTED_ORIGINS = [DOMINIO]
+CSRF_TRUSTED_ORIGINS = ["https://intentodobleforo-h3afdched0f8a8aw.eastus2-01.azurewebsites.ne"]
 
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
